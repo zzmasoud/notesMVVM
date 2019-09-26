@@ -38,6 +38,7 @@ class NoteViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        viewModel?.delegate = self
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -50,24 +51,38 @@ class NoteViewController: UIViewController {
         textView.text = viewModel?.text
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "show_tags" {
+            guard let viewModel = viewModel else {
+                return
+            }
+            let vc = (segue.destination as! UINavigationController).topViewController as! TagsTableViewController
+            vc.viewModel = TagsTVCViewModel(noteViewModel: viewModel)
+        }
+    }
+    
 }
 
 
 extension NoteViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return viewModel!.numberOfTags
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TagCompactCollectionViewCell.id, for: indexPath) as! TagCompactCollectionViewCell
-        cell.model = tags[indexPath.row]
+        cell.model = viewModel!.tag(for: indexPath.row)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return tags[indexPath.row].title.size(withAttributes: [
-            NSAttributedString.Key.font : UIFont.systemFont(ofSize: 17)
-        ])
+        return viewModel!.tagWidth(for: indexPath.row)
     }
     
+}
+
+extension NoteViewController: NoteVCViewModelDelegate {
+    func tagsChanged() {
+        collectionView.reloadData()
+    }
 }

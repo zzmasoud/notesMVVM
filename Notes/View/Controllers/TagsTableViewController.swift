@@ -10,12 +10,12 @@ import UIKit
 
 class TagsTableViewController: UITableViewController {
 
-    var viewModel = TagsTVCViewModel()
+    var viewModel: TagsTVCViewModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
-        tableView.allowsMultipleSelection = true
+        tableView.allowsMultipleSelection = viewModel.allowSelection
     }
 
     // MARK: - Table view data source
@@ -31,8 +31,11 @@ class TagsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: TagTableViewCell.id, for: indexPath) as! TagTableViewCell
-        
-//        cell.viewModel = tagss?[indexPath.row]
+        let tagViewModel = viewModel.tag(for: indexPath.row)
+        cell.viewModel = tagViewModel
+        if tagViewModel.accessoryType == .checkmark {
+            tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+        }
         return cell
     }
     
@@ -40,4 +43,11 @@ class TagsTableViewController: UITableViewController {
         return TagTableViewCell.height
     }
 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelect(index: indexPath.row)
+    }
+    
+    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        viewModel.didDeSelect(index: indexPath.row)
+    }
 }

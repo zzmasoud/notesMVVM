@@ -9,8 +9,8 @@
 import UIKit
 
 struct TagTableViewCellViewModel {
-    let model: Tag
-    var selected: Bool
+    private let model: Tag
+    private var selected: Bool
     
     init(model: Tag, selected: Bool) {
         self.model = model

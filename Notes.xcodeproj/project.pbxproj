@@ -75,6 +75,16 @@
 			path = Extentions;
 			sourceTree = "<group>";
 		};
+		0429DD1C233C9CAA00AA5CF1 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				046B11BE2332700C00815FC0 /* TagsTableViewController.swift */,
+				04FADC4D233109B70057DDD6 /* NotesTableViewController.swift */,
+				04FADC5123310B420057DDD6 /* NoteViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		046B11BC23326FEF00815FC0 /* Notes */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,9 +117,7 @@
 		04C0FD8123316300002CD3F1 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				046B11BE2332700C00815FC0 /* TagsTableViewController.swift */,
-				04FADC4D233109B70057DDD6 /* NotesTableViewController.swift */,
-				04FADC5123310B420057DDD6 /* NoteViewController.swift */,
+				0429DD1C233C9CAA00AA5CF1 /* Controllers */,
 				04C0FD8323316326002CD3F1 /* Cell */,
 				04C4DA0B2333D05B002BAFB6 /* BackRoundedView.swift */,
 			);
@@ -417,11 +425,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9KCR5Q9JUP;
 				INFOPLIST_FILE = Notes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = zzmasoud.Notes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -434,11 +444,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 9KCR5Q9JUP;
 				INFOPLIST_FILE = Notes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = zzmasoud.Notes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

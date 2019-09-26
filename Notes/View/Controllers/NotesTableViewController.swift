@@ -51,8 +51,10 @@ class NotesTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! NoteViewController
-        vc.viewModel = sender as? NoteVCViewModel
+        if segue.identifier == "show_note" {
+            let vc = segue.destination as! NoteViewController
+            vc.viewModel = sender as? NoteVCViewModel
+        } 
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

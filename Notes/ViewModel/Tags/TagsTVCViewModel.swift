@@ -15,12 +15,16 @@ struct TagsTVCViewModel {
         Tag(id: 3, title: "Personal", colorHex: "#E06A7B")
     ]
     
-    init() {
-        
-    }
+    var noteViewModel: NoteVCViewModel?
+    
+    init() {}
     
     init(noteViewModel: NoteVCViewModel) {
-        
+        self.noteViewModel = noteViewModel
+    }
+    
+    var allowSelection: Bool {
+        return noteViewModel != nil
     }
     
     var numberOfSections: Int {
@@ -32,6 +36,15 @@ struct TagsTVCViewModel {
     }
     
     func tag(for index: Int) -> TagTableViewCellViewModel {
-        return Tag(id: 2, title: "ddd", colorHex: "EEE")
+        return TagTableViewCellViewModel(model: tags[index], selected: noteViewModel?.isTagged(tag: tags[index]) ?? false)
+    }
+    
+    
+    mutating func didSelect(index: Int) {
+        noteViewModel?.add(tag: tags[index])
+    }
+    
+    mutating func didDeSelect(index: Int) {
+        noteViewModel?.remove(tag: tags[index])
     }
 }

@@ -16,14 +16,14 @@ class TagCompactCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     
     
-    var model: Tag! {
+    var model: TagCollectionViewViewModel! {
         didSet {
             updateUI()
         }
     }
     
     private func updateUI() {
-        colorView.backgroundColor = UIColor(hexString: model.colorHex)
+        colorView.backgroundColor = model.color
         titleLabel.text = model.title
     }
     

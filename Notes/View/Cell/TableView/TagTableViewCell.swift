@@ -16,7 +16,7 @@ class TagTableViewCell: UITableViewCell {
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     
-    var viewModel: Tag! {
+    var viewModel: TagTableViewCellViewModel! {
         didSet {
             updateUI()
         }
@@ -24,7 +24,7 @@ class TagTableViewCell: UITableViewCell {
     
     private func updateUI() {
         titleLabel.text = viewModel.title
-        colorView.backgroundColor = UIColor.init(hexString: viewModel.colorHex)
+        colorView.backgroundColor = viewModel.color
     }
     
     override class func awakeFromNib() {

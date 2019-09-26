@@ -146,7 +146,7 @@
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="separatorColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="ZVs-KS-I6F" firstAttribute="leading" secondItem="ns1-Ey-SYK" secondAttribute="leading" constant="8" id="FP7-R2-dbx"/>
                                                     <constraint firstAttribute="height" constant="60" id="Kvs-Hv-4Ub"/>
@@ -189,7 +189,7 @@
                                                         </constraints>
                                                     </view>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="separatorColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="ZPr-H4-KG0" firstAttribute="top" secondItem="StH-1j-Qfa" secondAttribute="top" constant="8" id="63i-Cb-AY1"/>
                                                     <constraint firstAttribute="trailing" secondItem="Os5-mY-dve" secondAttribute="trailing" constant="8" id="CSr-od-FGV"/>
@@ -223,7 +223,7 @@
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="FqA-Gb-Kct">
                                                         <rect key="frame" x="0.0" y="0.0" width="366" height="39"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h1T-AW-2Gi">
+                                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h1T-AW-2Gi">
                                                             <size key="itemSize" width="50" height="50"/>
                                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -231,10 +231,10 @@
                                                         </collectionViewFlowLayout>
                                                         <cells>
                                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="tag_c_cell" id="7h1-vD-vW2" customClass="TagCompactCollectionViewCell" customModule="Notes" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="0.0" width="62" height="36.5"/>
+                                                                <rect key="frame" x="0.0" y="-5.5" width="50" height="50"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="D59-HN-Bzv">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="62" height="36.5"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4zF-ab-jxO">
@@ -280,7 +280,7 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="separatorColor" red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="u10-qZ-KgL" firstAttribute="top" secondItem="8p7-Ed-DdH" secondAttribute="bottom" constant="5" id="LRX-fX-ZwA"/>
                                             <constraint firstItem="u10-qZ-KgL" firstAttribute="leading" secondItem="zR1-VA-m2O" secondAttribute="leading" constant="8" id="VQV-b6-AsK"/>
@@ -323,7 +323,7 @@
                             </barButtonItem>
                             <barButtonItem systemItem="add" id="pyf-Sl-wiW">
                                 <connections>
-                                    <segue destination="gF1-ep-ACp" kind="presentation" id="Sin-6Y-BCX"/>
+                                    <segue destination="gF1-ep-ACp" kind="presentation" identifier="show_tags" id="Sin-6Y-BCX"/>
                                 </connections>
                             </barButtonItem>
                         </rightBarButtonItems>

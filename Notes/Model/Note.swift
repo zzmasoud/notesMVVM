@@ -17,9 +17,13 @@ class Note: NSObject, NSCoding {
             updatedAt = Date()
         }
     }
-    var _tags:[Int]?
+    var _tags:[Int]? {
+        didSet {
+            updatedAt = Date()
+        }
+    }
     
-    lazy var tags:[Tag]? = {
+    var tags:[Tag]? {
         let _all:[Tag]? = [
             Tag(id: 1, title: "Work", colorHex: "#CF5E26"),
             Tag(id: 2, title: "Home", colorHex: "#4894F5"),
@@ -40,7 +44,7 @@ class Note: NSObject, NSCoding {
             }
         }
         return results
-    }()
+    }
     
     
     
@@ -62,6 +66,21 @@ class Note: NSObject, NSCoding {
         createdAt = coder.decodeObject(forKey: "created_at") as! Date
         updatedAt = coder.decodeObject(forKey: "updated_at") as! Date
         _tags = coder.decodeObject(forKey: "tags") as? [Int]
+    }
+    
+    func add(tag: Tag) {
+        if self._tags?.append(tag.id) == nil {
+            self._tags = [tag.id]
+        }
+    }
+    
+    func remove(tag: Tag) {
+        for i in 0..<_tags!.count {
+            if _tags![i] == tag.id {
+                _tags?.remove(at: i)
+                return
+            }
+        }
     }
 
 }
