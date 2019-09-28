@@ -9,25 +9,32 @@
 import Foundation
 
 class DataManager {
+    private(set) var notes:[Note]
     
-    static var notes: [Note] = []
-    static func loadNotes() -> [Note] {
-        
+    static let shared = DataManager()
+    
+    private init() {
         guard let data = UserDefaults.standard.data(forKey: "notes") , let cachedItems = NSKeyedUnarchiver.unarchiveObject(with: data) as? [Note] else {
-            var notes:[Note] = []
-            for i in 0...5 {
-                notes.append(Note(text: "note\(i)"))
+                self.notes = []
+                return
             }
-            self.notes = notes
-            return DataManager.notes
-        }
-        self.notes = cachedItems
-        return cachedItems
+        self.notes = cachedItems.sorted(by: {$0.updatedAt > $1.updatedAt})
     }
-    
-    static func save() {
-        let newEncodedData = NSKeyedArchiver.archivedData(withRootObject: DataManager.notes)
+
+    func save() {
+        let newEncodedData = NSKeyedArchiver.archivedData(withRootObject: notes)
         UserDefaults.standard.set(newEncodedData, forKey: "notes")
         UserDefaults.standard.synchronize()
     }
+    
+    func add(note: Note) {
+        self.notes.insert(note, at: 0)
+        self.save()
+    }
+    
+    func remove(at index: Int) {
+        self.notes.remove(at: index)
+        self.save()
+    }
+
 }

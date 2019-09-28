@@ -9,7 +9,7 @@
 import Foundation
 
 struct NotesTVCViewModel {
-    private(set) var notes = DataManager.loadNotes()
+    private(set) var notes = DataManager.shared.notes
     
     var numberOfSections: Int {
         return 1
@@ -22,13 +22,14 @@ struct NotesTVCViewModel {
     func note(for index: Int) -> NoteVCViewModel {
         return NoteVCViewModel(model: notes[index])
     }
+
     
     mutating func reloadData() {
-        notes = DataManager.loadNotes()
+        notes = DataManager.shared.notes
     }
     
     mutating func remove(at index: Int) {
         notes.remove(at: index)
-        DataManager.save()
+        DataManager.shared.remove(at: index)
     }
 }

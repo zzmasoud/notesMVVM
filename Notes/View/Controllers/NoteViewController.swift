@@ -16,7 +16,6 @@ class NoteViewController: UIViewController {
         Tag(id: 3, title: "Personal", colorHex: "#E06A7B")
     ]
 
-    
     @IBOutlet weak var createDateLabel: UILabel!
     @IBOutlet weak var updateDateLabel: UILabel!
     @IBOutlet weak var textView: UITextView!
@@ -26,7 +25,7 @@ class NoteViewController: UIViewController {
         guard !textView.text.isEmpty else {
             return
         }
-        viewModel?.update(text: textView.text)
+        viewModel?.save(text: textView.text)
         navigationController?.popViewController(animated: true)
     }
     
@@ -47,7 +46,6 @@ class NoteViewController: UIViewController {
         loadViewIfNeeded()
         createDateLabel.text = viewModel?.createStamp
         updateDateLabel.text = viewModel?.updateStamp
-        
         textView.text = viewModel?.text
     }
     

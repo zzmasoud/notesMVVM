@@ -27,7 +27,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dJn-CN-heS">
                                             <rect key="frame" x="20" y="11" width="374" height="101"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="VbI-ye-Jfn">
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="VbI-ye-Jfn">
                                                     <rect key="frame" x="8" y="8" width="358" height="85"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGt-Kf-utw">
@@ -36,12 +36,23 @@
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Cd-zv-TGH">
-                                                            <rect key="frame" x="0.0" y="34" width="358" height="51"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sc8-EF-wCU">
+                                                            <rect key="frame" x="0.0" y="42" width="358" height="43"/>
+                                                            <subviews>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YZs-D8-8an">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="260.5" height="43"/>
+                                                                </stackView>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Cd-zv-TGH">
+                                                                    <rect key="frame" x="268.5" y="0.0" width="89.5" height="43"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="8Cd-zv-TGH" firstAttribute="width" relation="greaterThanOrEqual" secondItem="sc8-EF-wCU" secondAttribute="width" multiplier="0.25" id="XTN-4j-2Xf"/>
+                                                            </constraints>
+                                                        </stackView>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="lGt-Kf-utw" firstAttribute="height" secondItem="VbI-ye-Jfn" secondAttribute="height" multiplier="0.4" id="uSH-GF-sRg"/>
@@ -67,6 +78,7 @@
                                 <connections>
                                     <outlet property="backView" destination="dJn-CN-heS" id="H60-Kh-EFE"/>
                                     <outlet property="dateLabel" destination="8Cd-zv-TGH" id="BAg-Lx-Yn8"/>
+                                    <outlet property="tagsStackView" destination="YZs-D8-8an" id="33Q-5b-g3v"/>
                                     <outlet property="titleLabel" destination="lGt-Kf-utw" id="Apz-XJ-Fh9"/>
                                 </connections>
                             </tableViewCell>
@@ -76,7 +88,13 @@
                             <outlet property="delegate" destination="n0P-oV-9de" id="EPw-aY-ebo"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Notes" id="0KX-e5-ftX"/>
+                    <navigationItem key="navigationItem" title="Notes" id="0KX-e5-ftX">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="quh-Pb-xY5">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" id="oO9-Wt-E7w"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="show_note" id="8TB-oa-s2g"/>
                     </connections>
@@ -415,4 +433,7 @@
             <point key="canvasLocation" x="1000.0000000000001" y="-147.32142857142856"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="8TB-oa-s2g"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -9,7 +9,7 @@
 import Foundation
 
 class Note: NSObject, NSCoding {
-    
+    let id: String
     let createdAt: Date
     var updatedAt: Date
     var text: String {
@@ -49,12 +49,14 @@ class Note: NSObject, NSCoding {
     
     
     init(text: String) {
+        self.id = UUID().uuidString
         self.text = text
         self.createdAt = Date()
         self.updatedAt = Date()
     }
     
     func encode(with coder: NSCoder) {
+        coder.encode(id, forKey: "id")
         coder.encode(text, forKey: "text")
         coder.encode(createdAt, forKey: "created_at")
         coder.encode(updatedAt, forKey: "updated_at")
@@ -62,6 +64,7 @@ class Note: NSObject, NSCoding {
     }
     
     required init?(coder: NSCoder) {
+        id = coder.decodeObject(forKey: "id") as! String
         text = coder.decodeObject(forKey: "text") as! String
         createdAt = coder.decodeObject(forKey: "created_at") as! Date
         updatedAt = coder.decodeObject(forKey: "updated_at") as! Date
@@ -80,6 +83,13 @@ class Note: NSObject, NSCoding {
                 _tags?.remove(at: i)
                 return
             }
+        }
+    }
+    
+    func update(tags: [Tag]) {
+        self._tags = nil
+        for tag in tags {
+            self.add(tag: tag)
         }
     }
 

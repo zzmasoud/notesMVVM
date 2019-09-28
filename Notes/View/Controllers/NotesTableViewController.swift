@@ -22,7 +22,7 @@ class NotesTableViewController: UITableViewController {
         viewModel.reloadData()
         tableView.reloadData()
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -33,11 +33,9 @@ class NotesTableViewController: UITableViewController {
         return viewModel.numberOfRows
     }
 
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NoteTableViewCell.id, for: indexPath) as! NoteTableViewCell
         cell.viewModel = viewModel.note(for: indexPath.row)
-
         return cell
     }
     
@@ -51,10 +49,9 @@ class NotesTableViewController: UITableViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "show_note" {
-            let vc = segue.destination as! NoteViewController
-            vc.viewModel = sender as? NoteVCViewModel
-        } 
+        if let vc = segue.destination as? NoteViewController {
+            vc.viewModel = (segue.identifier == "show_note") ? sender as? NoteVCViewModel : NoteVCViewModel(model: nil)
+        }
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -66,6 +63,5 @@ class NotesTableViewController: UITableViewController {
             break
         }
     }
-    
     
 }

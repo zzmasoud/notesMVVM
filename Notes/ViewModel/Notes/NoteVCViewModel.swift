@@ -13,39 +13,51 @@ protocol NoteVCViewModelDelegate {
 }
 
 class NoteVCViewModel {
-    let model: Note
-    
+    private var model: Note?
     private var tags:[Tag] = []
-    let formatter = DateFormatter()
+    
+    lazy var formatter: DateFormatter = {
+        return DateFormatter()
+    }()
     var delegate: NoteVCViewModelDelegate?
     
-    
-    init(model: Note) {
+    init(model: Note?) {
         self.model = model
-        self.tags = model.tags ?? []
+        self.tags = model?.tags ?? []
     }
     
     var text: String {
-        return model.text
+        return model?.text ?? ""
     }
     
     var createStamp: String {
+        guard let createdAt = model?.createdAt else {
+            return "-"
+        }
         formatter.dateStyle = .short
         formatter.timeStyle = .short
-        return formatter.string(from: model.createdAt)
+        return formatter.string(from: createdAt)
     }
     
     var updateStamp: String {
-        formatter.dateStyle = .short
+        guard let updatedAt = model?.updatedAt else {
+            return "-"
+        }
+        formatter.dateStyle = updatedAt.distance(to: Date()) < 86400 ? .none : .short
         formatter.timeStyle = .short
-        return formatter.string(from: model.updatedAt)
+        return formatter.string(from: updatedAt)
     }
     
-    func update(text: String) {
-        model.text = text
-        model._tags = nil
-        _ = tags.map({model.add(tag: $0)})
-        DataManager.save()
+    func save(text: String) {
+        if let model = self.model {
+            model.text = text
+            model.update(tags: tags)
+            DataManager.shared.save()
+        } else {
+            model = Note(text: text)
+            model?.update(tags: tags)
+            DataManager.shared.add(note: model!)
+        }
     }
     
     func add(tag: Tag) {
@@ -63,6 +75,7 @@ class NoteVCViewModel {
         }
     }
     
+    // MARK: - CollectionView
     
     var numberOfTags: Int {
         return tags.count

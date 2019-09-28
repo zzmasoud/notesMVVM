@@ -27,10 +27,7 @@ class TagTableViewCell: UITableViewCell {
         colorView.backgroundColor = viewModel.color
     }
     
-    override class func awakeFromNib() {
-        super.awakeFromNib()
-    }
-        
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         colorView.layer.cornerRadius = colorView.layer.bounds.size.width/2
